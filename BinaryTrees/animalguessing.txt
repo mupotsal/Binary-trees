@@ -1,0 +1,6 @@
+Q Does the animal have 4 legs
+G Horse
+Q Does the animal have Horns?
+G Cow
+Q Is the animal smaller than a Cow?
+ 
