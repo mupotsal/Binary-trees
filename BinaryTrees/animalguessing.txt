@@ -1,6 +1,21 @@
-Q Does the animal have 4 legs
-G Horse
-Q Does the animal have Horns?
-G Cow
-Q Is the animal smaller than a Cow?
+# Does the animal have 4 legs 
+ Horse
+# Does the animal have Horns?
+ Cow
+# Is the animal smaller than a Cow?# Does the animal have 4 legs 
+ Horse
+# Does the animal have Horns?
+ Cow
+# Is the animal smaller than a tortoise?
+ # Does the animal have 2 legs 
+ Horse
+# Does the animal have big ears?
+ Cow
+# Is the animal smaller than a goat?
+ # Does the animal have 4 legs 
+ Horse
+# Does the animal have fur?
+ Cow
+# Is the animal smaller than a Cow?
+ 
  

@@ -11,26 +11,28 @@ answers picked are yes or false as they try to figure out the animal in there mi
 #include <string>
 using namespace std;
 #include <fstream>
+#include <sys/stat.h>
+#include <windows.h>
 
 
 class Node {
 private:
-	string Question;
+	string answer;
 	Node *noData;
 	Node* yesData;
 
 public:
 	Node(string quest) {
-		Question = quest;
+		answer = quest;
 		noData = NULL;
 		yesData = NULL;
 	}
 	void setQuestion(string newQuestion)	{
-		Question = newQuestion;
+		answer = newQuestion;
 
 	}
 	string getQuestion()	{
-		return Question;
+		return answer;
 
 	}
 	void setNoData(Node *node)
@@ -62,7 +64,7 @@ public:
 
 	 void traverse() { // query
 		 if (this->isQuestion()) {
-			 cout << this->Question;
+			 cout << this->answer;
 			 string answer;
 			 cout << "Enter yes or no" << endl;
 			 cin >> answer;
@@ -82,7 +84,7 @@ public:
 
 
 	 void onTraverseObject() {
-		 cout << "I guess you are thinking of" << this->Question << "?" << endl;
+		 cout << "I guess you are thinking of" << this->answer << "?" << endl;
 		 string answer;
 		 cout << "enter yes or no" << endl;
 		 if (answer == "yes") {
@@ -94,20 +96,20 @@ public:
 	 }
 
 	 void updateTree() {
-		 cout << "You won, what animal were you thinking of?";
+		 cout << "You won, what animal were you thinking of ?";
 		 string useranimal;
 		 string userqsn;
-		 cout << "Write a question to diistinguish " << useranimal << " to " << this->Question << endl;
+		 cout << "Write a question to distinguish " << useranimal << " to " << this->answer << endl;
 		 cin >> userqsn;
 		 cout << "What would be the answer if you were thinking  of " << useranimal << endl;
 		 string answer;
 		 cin >>answer;
 		 if (answer == "yes") {
-			 this->noData = new Node(this->Question);
+			 this->noData = new Node(this->answer);
 			 this->yesData = new Node(useranimal);
 		 }
 		 else {
-			 this->yesData = new Node(this->Question);
+			 this->yesData = new Node(this->answer);
 			 this->noData = new Node(useranimal);
 		 }
 
@@ -267,31 +269,62 @@ public:
 */
 
 
+void parse(Node*& root, fstream& file) {
+	string str;
+	if (!file.eof()) {
+		getline(file, str);
+		cin.clear();
+	}
+}
 
+
+
+
+int play_game() {
+	string line;
+	ifstream myfile("animalguessing.txt");
+	if (myfile.is_open())
+
+	{
+		int i = 0;
+		while(getline(myfile, line))		{
+			
+			if (line[i] == '#') {
+
+				cout << line << endl;
+				
+				string sln;
+				cin >> sln;
+				if (sln == "yes") {
+					cout << "Is the animal" << "dog"<< endl;
+					
+				}
+				
+				else{
+					string newsln;
+					cout << "what is the animal" << endl;
+					cin >> newsln;
+				}
+			}
+			//cout << line << '\n';
+			
+		}
+		myfile.close();
+	}
+
+	else cout << "Unable to open file";
+	return 0;
+}
 
 
 
 int main() {
+	fstream file;
+	file.open("animalguessing.txt");
+	cout << "You are going to play the animal guessing game" << endl;
+	play_game();
 
-	string question;
-	string yesGuess;
-	string noGuess;
-	cout << "what is the queston" << endl;
-	cin >> question;
-	cout << "what is the answer" << endl;
-	cin >> yesGuess;
-	//cout << "what is the no answer" << endl;
-	//gcin >> noGuess;
-	BTTree tree(question, yesGuess, noGuess);
-	tree.query();
 
-	while (true) {
-		BTTree tree(question, yesGuess, noGuess);
-		tree.query();
-
-	}
-	ifstream inFile("animalguessing.txt");
-	tree.readfile("animalguessing.txt");
 	
 	
 
